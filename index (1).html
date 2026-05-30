@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rao Muhammad Hanzala — Developer</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d0d0d'/%3E%3Crect x='1' y='1' width='30' height='30' rx='5' fill='none' stroke='%231D9E75' stroke-width='1'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='monospace' font-size='10' font-weight='700' fill='%231D9E75'%3ERMH%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --black:#0d0d0d;--white:#f5f3ee;--accent:#1D9E75;--accent2:#0F6E56;
+    --gray:#888780;--light:#e8e6e0;--card:#1a1a1a;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;line-height:1.6;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 4rem;background:rgba(13,13,13,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05)}
+  .nav-logo{font-family:'Space Mono',monospace;font-size:1rem;color:var(--accent);letter-spacing:0.05em}
+  .nav-links{display:flex;gap:2rem}
+  .nav-links a{font-size:0.85rem;color:var(--gray);letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s}
+  .nav-links a:hover{color:var(--white)}
+
+  .hero{min-height:100vh;display:flex;align-items:center;padding:0 4rem;position:relative;overflow:hidden}
+  .hero-bg{position:absolute;top:-20%;right:-10%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(29,158,117,0.12) 0%,transparent 70%);pointer-events:none}
+  .hero-content{max-width:700px;position:relative;z-index:1}
+  .hero-tag{font-family:'Space Mono',monospace;font-size:0.8rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem}
+  .hero-tag::before{content:'';display:inline-block;width:2rem;height:1px;background:var(--accent)}
+  .hero-name{font-family:'Space Mono',monospace;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;line-height:1.1;margin-bottom:1rem;letter-spacing:-0.02em}
+  .hero-name span{color:var(--accent)}
+  .hero-desc{font-size:1.1rem;color:var(--gray);max-width:520px;margin-bottom:2.5rem;font-weight:300;line-height:1.8}
+  .hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;border-radius:2px;font-size:0.9rem;font-weight:500;letter-spacing:0.05em;transition:all 0.2s;cursor:pointer;border:none}
+  .btn-primary{background:var(--accent);color:var(--black)}
+  .btn-primary:hover{background:var(--accent2);transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.2)}
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+  .hero-scroll{position:absolute;bottom:2.5rem;left:4rem;font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--gray);letter-spacing:0.15em;text-transform:uppercase;display:flex;align-items:center;gap:0.75rem}
+  .hero-scroll::after{content:'';display:inline-block;width:3rem;height:1px;background:var(--gray)}
+
+  section{padding:6rem 4rem}
+  .section-label{font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--accent);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem}
+  .section-label::before{content:'';display:inline-block;width:1.5rem;height:1px;background:var(--accent)}
+  .section-title{font-family:'Space Mono',monospace;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;margin-bottom:3rem;letter-spacing:-0.02em}
+
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06)}
+  .skill-item{background:var(--black);padding:1.75rem 1.5rem;transition:background 0.2s}
+  .skill-item:hover{background:var(--card)}
+  .skill-category{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:0.5rem}
+  .skill-tag{font-size:0.8rem;padding:0.35rem 0.75rem;border:1px solid rgba(255,255,255,0.1);color:var(--gray);border-radius:1px;transition:all 0.2s}
+  .skill-tag:hover{border-color:var(--accent);color:var(--accent)}
+
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06)}
+  .project-card{background:var(--black);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:background 0.2s}
+  .project-card:hover{background:var(--card)}
+  .project-card::before{content:attr(data-num);position:absolute;top:1.5rem;right:2rem;font-family:'Space Mono',monospace;font-size:3rem;font-weight:700;color:rgba(255,255,255,0.04);line-height:1}
+  .project-tech{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem}
+  .project-title{font-size:1.25rem;font-weight:600;margin-bottom:0.75rem;line-height:1.3}
+  .project-desc{font-size:0.9rem;color:var(--gray);line-height:1.7}
+  .project-link{display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.5rem;font-size:0.8rem;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;font-family:'Space Mono',monospace}
+  .project-link::after{content:'→';transition:transform 0.2s}
+  .project-card:hover .project-link::after{transform:translateX(4px)}
+
+  .edu-list{display:flex;flex-direction:column;gap:0;border:1px solid rgba(255,255,255,0.06)}
+  .edu-item{padding:2rem;border-bottom:1px solid rgba(255,255,255,0.06);display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start;transition:background 0.2s}
+  .edu-item:last-child{border-bottom:none}
+  .edu-item:hover{background:var(--card)}
+  .edu-degree{font-size:1rem;font-weight:500;margin-bottom:0.3rem}
+  .edu-school{font-size:0.9rem;color:var(--gray)}
+  .edu-year{font-family:'Space Mono',monospace;font-size:0.8rem;color:var(--accent);white-space:nowrap}
+
+  .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;border:1px solid rgba(255,255,255,0.06);padding:4rem}
+  .contact-text{font-size:1.1rem;color:var(--gray);line-height:1.8;margin-bottom:2rem}
+  .contact-links{display:flex;flex-direction:column;gap:1rem}
+  .contact-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border:1px solid rgba(255,255,255,0.08);transition:all 0.2s}
+  .contact-link:hover{border-color:var(--accent);transform:translateX(4px)}
+  .contact-link-icon{width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;background:rgba(29,158,117,0.1);color:var(--accent);font-size:1rem;border-radius:1px}
+  .contact-link-info{flex:1}
+  .contact-link-label{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--gray);letter-spacing:0.12em;text-transform:uppercase}
+  .contact-link-value{font-size:0.9rem;color:var(--white);margin-top:0.15rem}
+  .contact-right{text-align:center}
+  .contact-avatar{width:160px;height:160px;border-radius:1px;background:rgba(29,158,117,0.1);border:1px solid rgba(29,158,117,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:'Space Mono',monospace;font-size:2.5rem;font-weight:700;color:var(--accent)}
+  .contact-name{font-family:'Space Mono',monospace;font-size:1rem;font-weight:700;margin-bottom:0.3rem}
+  .contact-role{font-size:0.85rem;color:var(--gray)}
+
+  footer{padding:2rem 4rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center}
+  .footer-copy{font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--gray)}
+  .footer-made{font-size:0.8rem;color:var(--gray)}
+
+  @media(max-width:768px){
+    nav{padding:1rem 1.5rem}
+    .nav-links{display:none}
+    .hero{padding:6rem 1.5rem 4rem}
+    section{padding:4rem 1.5rem}
+    .contact-inner{grid-template-columns:1fr;gap:2rem;padding:2rem}
+    footer{padding:1.5rem;flex-direction:column;gap:0.5rem;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">RMH.</div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Full Stack Developer</div>
+    <h1 class="hero-name">Rao Muhammad<br><span>Hanzala.</span></h1>
+    <p class="hero-desc">Motivated software engineering student building modern web solutions with PHP, Laravel, and .NET. Based in Karachi, Pakistan.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll down</div>
+</section>
+
+<section id="skills">
+  <div class="section-label">What I work with</div>
+  <h2 class="section-title">Technical Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-item">
+      <div class="skill-category">Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">C#</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">PHP</span>
+        <span class="skill-tag">SQL</span>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-category">Web</div>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML5</span>
+        <span class="skill-tag">CSS3</span>
+        <span class="skill-tag">Bootstrap</span>
+        <span class="skill-tag">Laravel</span>
+        <span class="skill-tag">ASP.NET</span>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-category">Databases</div>
+      <div class="skill-tags">
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">SQL Server</span>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-category">Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">Visual Studio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">What I've built</div>
+  <h2 class="section-title">Key Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card" data-num="01">
+      <div class="project-tech">C# · ASP.NET · SQL Server</div>
+      <h3 class="project-title">Institute of Fine Arts</h3>
+      <p class="project-desc">A full institute website built on ASP.NET with SQL Server for comprehensive data management. Handles institutional workflows and content.</p>
+      <a href="https://github.com/RaoHanzala19" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+    <div class="project-card" data-num="02">
+      <div class="project-tech">HTML · CSS · JavaScript</div>
+      <h3 class="project-title">Personal Portfolio</h3>
+      <p class="project-desc">A responsive personal portfolio website built from scratch using HTML, CSS, and JavaScript with a clean, modern design.</p>
+      <a href="https://github.com/RaoHanzala19" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-label">My background</div>
+  <h2 class="section-title">Education</h2>
+  <div class="edu-list">
+    <div class="edu-item">
+      <div>
+        <div class="edu-degree">Advanced Diploma in Software Engineering (ADSE)</div>
+        <div class="edu-school">Aptech Computer Education</div>
+      </div>
+      <div class="edu-year">2024 – Present</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-degree">Intermediate (Computer Science)</div>
+        <div class="edu-school">Jinnah Government College</div>
+      </div>
+      <div class="edu-year">Completion: June 2026</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-degree">Matriculation</div>
+        <div class="edu-school">The Smart School</div>
+      </div>
+      <div class="edu-year">Completed</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-label">Let's work together</div>
+  <h2 class="section-title">Get In Touch</h2>
+  <div class="contact-inner">
+    <div>
+      <p class="contact-text">I'm currently seeking entry-level opportunities to contribute to innovative projects at a professional software house. Open to full stack roles involving PHP, Laravel, or .NET.</p>
+      <div class="contact-links">
+        <a href="mailto:raohanzala513@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">raohanzala513@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+923255444150" class="contact-link">
+          <div class="contact-link-icon">📞</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">Phone</div>
+            <div class="contact-link-value">0325-5444150</div>
+          </div>
+        </a>
+        <a href="https://github.com/RaoHanzala19" target="_blank" class="contact-link">
+          <div class="contact-link-icon">⌥</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">GitHub</div>
+            <div class="contact-link-value">RaoHanzala19</div>
+          </div>
+        </a>
+        <div class="contact-link">
+          <div class="contact-link-icon">📍</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">Location</div>
+            <div class="contact-link-value">Karachi, Pakistan</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="contact-avatar">RMH</div>
+      <div class="contact-name">Rao Muhammad Hanzala</div>
+      <div class="contact-role">Full Stack Developer · Karachi</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-copy">© 2026 Rao Muhammad Hanzala</div>
+  <div class="footer-made">Built with passion in Karachi 🇵🇰</div>
+</footer>
+
+</body>
+</html>
