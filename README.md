@@ -2,6 +2,8 @@
 
 My personal portfolio website, covering my technical skills, key projects, education and how to get in touch.
 
+🔗 **Live:** https://raohanzala19.github.io/portfolio/
+
 ## 🛠️ Built with
 
 HTML5 · CSS3 · JavaScript
