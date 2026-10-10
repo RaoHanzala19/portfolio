@@ -14,4 +14,4 @@ No build step. Clone the repo and open `index.html` in your browser.
 
 ## 📬 Contact
 
-raohanzala457@gmail.com · [GitHub](https://github.com/RaoHanzala19)
+raohanzala513@gmail.com · [GitHub](https://github.com/RaoHanzala19)
